@@ -1,6 +1,6 @@
 def solution(A):
-    
-    if A == []:
+
+    if not A:
         return 0
 
     A.sort()
