@@ -4,13 +4,14 @@ def solution(S):
     pairs = [('(', ')'), ('[', ']'), ('{', '}')]
 
     for x in S:
-        prev = None
         if stack:
             prev = stack.pop()
+        else:
+            stack.append(x)
+            continue
 
         if (prev, x) not in pairs:
-            if prev:
-                stack.append(prev)
+            stack.append(prev)
             stack.append(x)
 
     return 1 * (not stack)
