@@ -1,7 +1,6 @@
 def solution(A):
 
     A_diff = [0] * len(A)
-
     for i in range(1, len(A)):
         A_diff[i] = A[i] - A[i - 1]
 
