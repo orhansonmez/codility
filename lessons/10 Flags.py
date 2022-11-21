@@ -20,11 +20,17 @@ def solution_not_efficient(A):
     max_flags = 1
     for K in range(2, P + 1):
 
+        if K * (K - 1) > sum(diff):
+            break
+
         flags, distance = 1, 0
         for d in diff:
             if distance + d >= K:
                 distance = 0
                 flags += 1
+
+                if flags >= K:
+                    break
             else:
                 distance += d
 
