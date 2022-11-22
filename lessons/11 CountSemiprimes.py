@@ -1,4 +1,4 @@
-def solution_not_efficient(N, P, Q):
+def solution(N, P, Q):
 
     is_prime = [True] * (N + 1)
     is_prime[0] = is_prime[1] = False
@@ -17,10 +17,16 @@ def solution_not_efficient(N, P, Q):
             primes.append(i)
 
     is_semiprime = [0] * (N + 1)
+
     for i in range(len(primes)):
+        if i * i > N:
+            break
+
         for j in range(i, len(primes)):
             if primes[i] * primes[j] <= N:
                 is_semiprime[primes[i] * primes[j]] = 1
+            else:
+                break
 
     prefix_sums = [0] * (N + 2)
     for i in range(1, N + 1):
