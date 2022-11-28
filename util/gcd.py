@@ -1,7 +1,10 @@
 def gcd_with_division(a, b):
+    if b > a:
+        a, b = b, a
+
     if a % b == 0:
         return b
-    return gcd_with_division(b, a % b)
+    return gcd_with_division(a % b, b)
 
 
 def gcd(a, b, res):
