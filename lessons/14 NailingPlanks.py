@@ -1,4 +1,4 @@
-def solution_not_efficient(A, B, C):
+def solution(A, B, C):
 
     planks = []
     for x in zip(A, B):
@@ -10,6 +10,7 @@ def solution_not_efficient(A, B, C):
 
     for n, nail in enumerate(C):
 
+        N = len(planks)
         begin, end = 0, N - 1
 
         result = -1
@@ -29,14 +30,19 @@ def solution_not_efficient(A, B, C):
         if result == -1:
             continue
 
+        planks_to_be_removed = []
+
         for i in range(result, N):
             if planks[i][0] <= nail <= planks[i][1]:
+                planks_to_be_removed.append(i)
                 is_nailed[i] = True
+
             if planks[i][0] > nail:
                 break
 
         for i in range(result - 1, -1, -1):
             if planks[i][0] <= nail <= planks[i][1]:
+                planks_to_be_removed.append(i)
                 is_nailed[i] = True
             else:
                 break
@@ -49,5 +55,10 @@ def solution_not_efficient(A, B, C):
 
         if all_nailed:
             return n + 1
+
+        planks_to_be_removed.sort(reverse=True)
+        for i in planks_to_be_removed:
+            del planks[i]
+            del is_nailed[i]
 
     return -1
